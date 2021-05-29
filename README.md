@@ -1,5 +1,11 @@
 # A centralized useful technical notes for programmers
 
+# Environment & Useful Software
+- https://ohmyz.sh/#install
+- https://sdkman.io/install
+- https://www.spectacleapp.com/
+- https://monosnap.com/
+
 ## Git
 Config
 ```bash
@@ -16,3 +22,7 @@ git remote show origin
 git remote set-url origin <the-url-to-origin>
 
 ```
+
+## Gradle
+gradle init
+

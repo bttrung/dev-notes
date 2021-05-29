@@ -6,7 +6,7 @@
 - https://www.spectacleapp.com/
 - https://monosnap.com/
 
-Windows - MacOS vs Linux
+## Windows - MacOS vs Linux
 - OSX - `open` is a universal opener in OSX
 - Linux - has `xdg-open`
 - Windows - `use start`
@@ -30,4 +30,6 @@ git remote set-url origin <the-url-to-origin>
 
 ## Gradle
 gradle init
+gradle tasks
+gradle tasks --all
 

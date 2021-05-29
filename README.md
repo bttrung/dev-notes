@@ -6,6 +6,11 @@
 - https://www.spectacleapp.com/
 - https://monosnap.com/
 
+Windows - MacOS vs Linux
+- OSX - `open` is a universal opener in OSX
+- Linux - has `xdg-open`
+- Windows - `use start`
+
 ## Git
 Config
 ```bash

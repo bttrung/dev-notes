@@ -59,5 +59,26 @@ Other tasks
 
 
 
+```
+gradle --rerun-tasks build
+```
+
+
+Configuration Scopes
+-----------
+- `implementation` -> import only the dependent lib
+- `testImplementation`
+- `api` -> you want to import everything form dependency chain
+- `compileOnly`
+- `runtimeOnly`
+- `testCompileOnly`
+- `testRuntimeOnly`
+
+Build Phases
+-----------
+- `Initialization`: project, module1, module2...
+- `Configuration`: task1, task2...
+- `Execution`: compile, test, jar...
+
 
 

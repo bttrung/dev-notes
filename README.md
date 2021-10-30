@@ -80,5 +80,25 @@ Build Phases
 - `Configuration`: task1, task2...
 - `Execution`: compile, test, jar...
 
+## Ansible
+```
+brew install ansible
+ansible --version
+```
+
+- Ansible is agentless: you don't need to install additional software on the target machine to be able work with Ansible
+
+**Inventory**
+-----------
+- Default inventory location: 
+/etc/ansible/hosts
+
+- Inventory parameters:
+```
+ansible_connection = ssh/winrm/localhost
+ansible_port = 22/5986/...
+ansible_user = root/administrator/...
+ansible_ssh_pass = Password/...
+```
 
 

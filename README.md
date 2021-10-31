@@ -84,21 +84,85 @@ Build Phases
 ```
 brew install ansible
 ansible --version
-```
 
+or:
+sudo yum install ansible
+
+or:
+sudo yum install python3-pip
+pip3 install ansible
+
+or:
+yum search epel
+yum install <epel-release>
+yum install ansible
+
+```
+- Ansible configs: /etc/ansible/ansible.cf
 - Ansible is agentless: you don't need to install additional software on the target machine to be able work with Ansible
 
 **Inventory**
 -----------
-- Default inventory location: 
-/etc/ansible/hosts
 
 - Inventory parameters:
 ```
+ansible_host=172.0.0.1
 ansible_connection = ssh/winrm/localhost
 ansible_port = 22/5986/...
 ansible_user = root/administrator/...
 ansible_ssh_pass = Password/...
 ```
+- Download os images from: https://www.osboxes.org/
+- Clone into ansible-controller and ansible-server-1
+- Modify hosts for all servers:
+```
+sudo vi /etc/hostname
+ansibleconntroller
 
+sudo vi /etc/hosts
+127.0.0.1   localhost ansiblecontroller
+::1         localhost ansibleconntroller
+
+```
+
+- Sample inventory file:
+```
+# Web Servers
+web_node1 ansible_host=web01.xyz.com ansible_connection=winrm ansible_user=administrator ansible_password=Win$Pass
+web_node2 ansible_host=web02.xyz.com ansible_connection=winrm ansible_user=administrator ansible_password=Win$Pass
+web_node3 ansible_host=web03.xyz.com ansible_connection=winrm ansible_user=administrator ansible_password=Win$Pass
+
+# DB Servers
+sql_db1 ansible_host=sql01.xyz.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+sql_db2 ansible_host=sql02.xyz.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
+
+# Groups
+[db_nodes]
+sql_db1
+sql_db2
+
+[web_nodes]
+web_node1
+web_node2
+web_node3
+
+[boston_nodes]
+sql_db1
+web_node1
+
+[dallas_nodes]
+sql_db2
+web_node2
+web_node3
+```
+
+**Playbook**
+- Playbook is a single yaml file:
+- - Play: defines a set of activities (tasks) to be run on hosts
+- - Task: an action like: execute a command, run a script, install a package...
+
+
+Exercises practice: 
+- https://legacy.kodekloud.com/p/ansible-practice-test/?scenario=questions_ansible_inventory&fbclid=IwAR2YyrgbwpWITp9P3pajTCo9JK5sMHwkQtkXX9b5F9QdJymuYK-jWjE5XNU
+- 
 

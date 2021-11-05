@@ -126,7 +126,7 @@ sudo vi /etc/hosts
 ```
 
 - Sample inventory file:
-```
+```shell
 # Web Servers
 web_node1 ansible_host=web01.xyz.com ansible_connection=winrm ansible_user=administrator ansible_password=Win$Pass
 web_node2 ansible_host=web02.xyz.com ansible_connection=winrm ansible_user=administrator ansible_password=Win$Pass
@@ -158,8 +158,64 @@ web_node3
 
 **Playbook**
 - Playbook is a single yaml file:
-- - Play: defines a set of activities (tasks) to be run on hosts
-- - Task: an action like: execute a command, run a script, install a package...
+    - Play: defines a set of activities (tasks) to be run on hosts
+    - Task: an action like: execute a command, run a script, install a package...
+- Module: (see more at ansible docs)
+    - command
+    - script
+    - yum
+    - service
+    - ...
+
+- How to execute ansible playbook?
+```
+ansible-playbook <playbook file name>
+
+Ex:
+ansible-playbook playbook.yml
+```
+
+Some command to run ansible and ansible playbook
+```
+ansible target1 -m ping -i inventory.txt 
+ansible all -m ping -i inventory.txt 
+
+ansible-playbook playbook-pingtest.yml -i inventory.txt
+
+```
+
+**Ansible modules**
+- `command`: executes command on a remote node
+- `script`: run a local script on a remote node after transferring it
+- `service`: manage services: start/stop/restart...
+
+
+**Ansible varialbe**
+- Stores info that varies with each host
+
+**Conditional**
+- when: `<boolean>`
+- when: `<boolean>` or `<boolean>`
+
+**Loops**
+- `loop`:
+  - a
+  - b
+  - c
+  - ...
+
+- `with_*`:
+  - with_items    
+  - with_file
+  - with_url
+  - ...
+
+**Ansible Roles**
+
+**Ansible Galaxy**
+```
+ansible-galaxy collection install community.aws
+```
 
 
 Exercises practice: 

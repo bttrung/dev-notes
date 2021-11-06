@@ -1,0 +1,7 @@
+AWS_ACCESS_KEY       = ""
+AWS_SECRET_KEY       = ""
+AWS_REGION_SINGAPORE = "ap-southeast-1"
+AWS_REGION_HONGKONG  = "ap-east-1"
+PATH_TO_PRIVATE_KEY  = "mykey"
+PATH_TO_PUBLIC_KEY   = "mykey.pub"
+INSTANCE_USERNAME    = "ubuntu"

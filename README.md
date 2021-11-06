@@ -220,5 +220,93 @@ ansible-galaxy collection install community.aws
 
 Exercises practice: 
 - https://legacy.kodekloud.com/p/ansible-practice-test/?scenario=questions_ansible_inventory&fbclid=IwAR2YyrgbwpWITp9P3pajTCo9JK5sMHwkQtkXX9b5F9QdJymuYK-jWjE5XNU
-- 
 
+
+
+# Terraform
+
+## Terraform HCL
+```terraform
+terraform console
+var.myvar
+"${var.myvar}"
+
+var.mylist
+var.mylist[0]
+var.mylist[1]
+slice(var.mylist, 0, 2)
+        
+var.mymap
+var.mymap["key"]
+
+```
+
+- Terraform Providers
+https://registry.terraform.io/browse/providers
+
+## Terraform commands
+```terraform
+terraform init
+terraform validate
+terraform apply
+terraform destroy
+terraform plan
+
+Keep the changes in an out file:
+terraform plan -out create-first-aws-instance.terraform
+        
+Then only apply the changes to the infra
+terraform apply create-first-aws-instance.terraform
+
+Then remove the out file
+rm create-first-aws-instance.terraform
+```
+
+## Provision Software: 2 ways:
+- To build your own custom AMI using Packer
+- To boot standardized AMIs, then install software:
+  - Using file upload
+  - Using remote exec
+  - Using automation tools: Ansible, puppet, chef...
+
+```terraform
+Generate ssh key
+ssh-keygen -f mykey
+
+Enable security group (inbound rule to allow myIP address)
+        
+Then:
+cd 2-software-provisioning
+
+terraform init
+terraform plan
+terraform apply
+```
+
+## Outputting attributes (see 3-output-atributes)
+- Terraform keeps attributes of all the resources 
+- Refer to any attributes by specifying the following elements:
+  - Resource Type: `aws_instance`
+  - Resource name: `my-first-aws-instance`
+  - Attribute name: `public_ip`
+
+## Terraform State
+- Terraform keeps the remote state of the infrastructure
+- It stores in a file called `terraform.tfstate`
+- There is also a backup of the previous state: `terraform.tfstate.backup`
+- When executing `apply`, a new state and backup is written
+- The terraform state can be saved remote using the backend function
+- The default is local terraform state file
+- Remote backend:
+  - consult
+  - s3 bucket
+  - ...
+
+
+# AWS
+
+Find where stores the aws credentials configs
+```
+aws configure
+cat ~/.aws/credentials
+```

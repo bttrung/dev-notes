@@ -6,6 +6,9 @@
 - https://www.spectacleapp.com/
 - https://monosnap.com/
 
+# brew
+brew doctor
+
 ## Windows - MacOS vs Linux
 - OSX - `open` is a universal opener in OSX
 - Linux - has `xdg-open`
@@ -310,3 +313,5 @@ Find where stores the aws credentials configs
 aws configure
 cat ~/.aws/credentials
 ```
+
+# Redis

@@ -312,6 +312,30 @@ Find where stores the aws credentials configs
 ```
 aws configure
 cat ~/.aws/credentials
+cat ~/.aws/config
 ```
 
+Check aws installation
+```
+which aws
+aws --version
+```
+
+Check config
+```aws
+aws configure list
+aws configure list-profiles
+```
+
+Execute with profile
+```
+aws s3 ls --profile profilename
+```
+
+Set aws env variable
+```
+export AWS_ACCESS_KEY_ID=<id>
+export AWS_SECRET_ACCESS_KEY=<key>
+export AWS_DEFAULT_REGION=us-west-2
+```
 # Redis

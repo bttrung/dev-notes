@@ -6,16 +6,25 @@
 - https://www.spectacleapp.com/
 - https://monosnap.com/
 
-# brew
+# Homebrew
 brew doctor
 
-## Windows - MacOS vs Linux
-- OSX - `open` is a universal opener in OSX
-- Linux - has `xdg-open`
-- Windows - `use start`
+# Git
 
-## Git
-Config
+## basic
+``` 
+git init
+git add .
+git commit -m "message"
+git status
+git checkout
+git merge <branch>
+git fetch
+git pull
+git push
+```
+
+## config
 ```bash
 git config --list
 git config --global user.name "Your username"
@@ -24,51 +33,66 @@ git config --local user.name "Your username"
 git config --local user.email "Your email"
 ```
 
-Origin
-```bash
-git remote show origin
-git remote set-url origin <the-url-to-origin>
-
+## branch
+``` 
+git branch => list all branches
+git branch develop => create branch named develop
+git merge develop => merge branch
+git branch -d develop => delete branch
+```
+## states
+``` 
+- committed
+- modified
+- staged
 ```
 
-## Gradle
+## reset
+``` 
+git reset --soft HEAD~1 => remove last commit, move the changes from that commit to STAGED
+git reset --hard HEAD~1 => remove completely the last commit changes
+git reset -- . => remove the changes from STAGED
+```
+
+## remote
+```bash
+git remote show origin
+git remote -v
+git remote set-url origin <the-url-to-origin>
+```
+
+## log
+``` 
+git log --oneline --graph
+```
+
+## fetch vs pull
+``` 
+git fetch is the command that tells your local git to retrieve the latest meta-data info from the original (yet doesn't do any file transferring. It's more like just checking to see if there are any changes available). 
+git pull on the other hand does that AND brings (copy) those changes from the remote repository
+```
+
+## tag vs branch
+``` 
+A tag represents a version of a particular branch at a moment in time. A branch represents a separate thread of development that may run concurrently with other development efforts on the same code base. Changes to a branch may eventually be merged back into another branch to unify them.
+
+The difference between tags and branches are that a branch always points to the top of a development line and will change when a new commit is pushed whereas a tag will not change. Thus tags are more useful to "tag" a specific version and the tag will then always stay on that version and usually not be changed.
+```
+
+## merge vs rebase
+TBD...
+
+## Cherry pick
+
+
+# Gradle
+``` 
 gradle init
 gradle tasks
 gradle tasks --all
-
-Build Setup tasks
------------------
-- init - Initializes a new Gradle build.
-- wrapper - Generates Gradle wrapper files.
-
-Help tasks
-----------
-- buildEnvironment - Displays all buildscript dependencies declared in root project '1'.
-- dependencies - Displays all dependencies declared in root project '1'.
-- dependencyInsight - Displays the insight into a specific dependency in root project '1'.
-- help - Displays a help message.
-- javaToolchains - Displays the detected java toolchains.
-- outgoingVariants - Displays the outgoing variants of root project '1'.
-- projects - Displays the sub-projects of root project '1'.
-- properties - Displays the properties of root project '1'.
-- tasks - Displays the tasks runnable from root project '1'.
-
-Other tasks
------------
-- components - Displays the components produced by root project '1'. [deprecated]
-- dependentComponents - Displays the dependent components of components in root project '1'. [deprecated]
-- model - Displays the configuration model of root project '1'. [deprecated]
-- prepareKotlinBuildScriptModel
-
-
-
-```
-gradle --rerun-tasks build
 ```
 
-
-Configuration Scopes
------------
+## Configuration Scopes
 - `implementation` -> import only the dependent lib
 - `testImplementation`
 - `api` -> you want to import everything form dependency chain
@@ -77,13 +101,12 @@ Configuration Scopes
 - `testCompileOnly`
 - `testRuntimeOnly`
 
-Build Phases
------------
+## Build Phases
 - `Initialization`: project, module1, module2...
 - `Configuration`: task1, task2...
 - `Execution`: compile, test, jar...
 
-## Ansible
+# Ansible
 ```
 brew install ansible
 ansible --version
@@ -104,10 +127,8 @@ yum install ansible
 - Ansible configs: /etc/ansible/ansible.cf
 - Ansible is agentless: you don't need to install additional software on the target machine to be able work with Ansible
 
-**Inventory**
------------
-
-- Inventory parameters:
+## Inventory
+Inventory parameters:
 ```
 ansible_host=172.0.0.1
 ansible_connection = ssh/winrm/localhost
@@ -128,36 +149,6 @@ sudo vi /etc/hosts
 
 ```
 
-- Sample inventory file:
-```shell
-# Web Servers
-web_node1 ansible_host=web01.xyz.com ansible_connection=winrm ansible_user=administrator ansible_password=Win$Pass
-web_node2 ansible_host=web02.xyz.com ansible_connection=winrm ansible_user=administrator ansible_password=Win$Pass
-web_node3 ansible_host=web03.xyz.com ansible_connection=winrm ansible_user=administrator ansible_password=Win$Pass
-
-# DB Servers
-sql_db1 ansible_host=sql01.xyz.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
-sql_db2 ansible_host=sql02.xyz.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
-
-# Groups
-[db_nodes]
-sql_db1
-sql_db2
-
-[web_nodes]
-web_node1
-web_node2
-web_node3
-
-[boston_nodes]
-sql_db1
-web_node1
-
-[dallas_nodes]
-sql_db2
-web_node2
-web_node3
-```
 
 **Playbook**
 - Playbook is a single yaml file:
@@ -307,7 +298,6 @@ terraform apply
 
 
 # AWS
-
 Find where stores the aws credentials configs
 ```
 aws configure
@@ -339,3 +329,156 @@ export AWS_SECRET_ACCESS_KEY=<key>
 export AWS_DEFAULT_REGION=us-west-2
 ```
 # Redis
+
+# Docker
+### Manage images
+Pull an image
+``` 
+docker pull <image>:<tag>
+docker pull nginx
+```
+
+Push and image
+``` 
+docker push <image>
+```
+
+Show list images
+```
+docker images
+docker image ls
+```
+
+Delete an image / dangling images / all unused images
+``` 
+docker rmi <image-name>
+docker image prune
+docker image prune -a
+```
+
+Build an image from Dockerfile
+``` 
+docker build <directory>
+docker build . 
+```
+
+Tag an image
+```
+docker tag <image> <new image>
+docker tag jenkins jenkins:v2
+```
+
+Build and tag and image from Dockerfile
+``` 
+docker build -t <image> <directory>
+
+```
+
+### Container
+
+Show a list of running/all containers
+``` 
+docker ps
+docker ps -a
+```
+
+Delete a container
+``` 
+docker rm <container>
+docker rm web
+```
+
+Delete stopped containers
+``` 
+docker container prune
+```
+
+Start/stop container
+``` 
+docker start <container>
+docker stop <container>
+```
+
+Run new container
+``` 
+docker run <image>
+
+...assign container name
+docker run --name <container name> <image>
+
+...and map port
+docker run -p HOSTPORT:CONTAINER_PORT <image>
+
+... and run in background
+docker run -d <image>
+
+... and assign host name
+docker run --hostname HOSTNAME <image>
+
+... and add dns entry
+docker run --add-host HOSTNAME:IP  <image>
+
+... and map volume
+docker run -v HOSTDIR:TARGET_DIR <image>
+
+... change the entrypoint
+docker run -entrypoint EXCUTABLE <image>
+docker run -entrypoint bash nginx
+```
+
+Container Management
+``` 
+docker create <image>
+docker kill <container>
+docker restart <container>
+docker pause <container>
+docker unpause <container>
+docker rm -f <container>
+```
+
+Inspect Container
+``` 
+docker logs -f <conainer>   // show container output
+docker top <container>      // list the processes running inside container
+docker diff <container>     // show the diff between container and the image
+docker inspect <container>  // show lo-level infp
+```
+
+Interact with a container
+``` 
+docker attach <container>             // attach to a running container
+docker cp container:path hostpath|-   // copy file from container 
+docker cp hostpath|- container:path   // copy file to container 
+docker export <container>             // export content of a container
+docker exec <container> <args>        // run a command in a container
+```
+
+Search an image in the docker registry
+``` 
+docker search <text>
+```
+
+Docker save and load
+``` 
+docker save <repo>:<tag>    // export as a tarbal file
+docker load                 // load images from a  tarbal
+```
+
+Docker login logout
+``` 
+docker login ...
+docker logout ...
+```
+
+Show current connected docker registry
+``` 
+cat ~/.docker/config.json 
+```
+
+Show all docker system info
+``` 
+docker system info
+docker info
+```
+
+### Dockerfile

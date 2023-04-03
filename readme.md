@@ -482,3 +482,7 @@ docker info
 ```
 
 ### Dockerfile
+
+
+## Kubertenes
+kubectl get services

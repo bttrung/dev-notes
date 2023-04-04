@@ -379,7 +379,7 @@ docker build -t <image> <directory>
 Show a list of running/all containers
 ``` 
 docker ps
-docker ps -a
+docker ps -a (list all, include inactive)
 ```
 
 Delete a container
@@ -453,6 +453,7 @@ docker export <container>             // export content of a container
 docker exec <container> <args>        // run a command in a container
 ```
 
+
 Search an image in the docker registry
 ``` 
 docker search <text>
@@ -460,6 +461,7 @@ docker search <text>
 
 Docker save and load
 ``` 
+docker save -o  <fileName.tar> <image name>
 docker save <repo>:<tag>    // export as a tarbal file
 docker load                 // load images from a  tarbal
 ```
@@ -479,6 +481,31 @@ Show all docker system info
 ``` 
 docker system info
 docker info
+```
+
+Docker volume
+```
+docker volume ls
+docker volume create V1
+docker volume rm V1
+docker volume inspect V1
+```
+
+Docker networking
+``` 
+docker network ls
+docker network inspect bridge
+docker network create --driver bridge mynetwork
+
+assign container to network
+docker run -it --name B3 --network mynetwork ubuntu
+docker run -it --name B4 --network mynetwork ubuntu
+
+verify that both 2 container above is show in the mynetwork
+docker network inspect mynetwork
+
+expose network outside
+docker run -it --name B5 --network -p 9999:80 mynetwork ubuntu
 ```
 
 ### Dockerfile

@@ -484,5 +484,32 @@ docker info
 ### Dockerfile
 
 
-## Kubertenes
-kubectl get services
+## Kubernetes
+
+### Basic
+```
+kubectl version --short
+kubectl cluster-info
+kubectl api-resources --> list all k8s resources
+```
+
+### Configs
+``` 
+kubectl config get-contexts
+kubectl get componentstatus
+kubectl config use-context default
+```
+
+### Nodes
+```
+kubectl describe nodes
+kubectl describe node/docker-desktop
+kubectl get node
+kubectl get node docker-desktop -o wide -> more info about node
+kubectl get node docker-desktop -o yaml -> get yaml config about node
+```
+
+### Pod
+
+
+

@@ -442,6 +442,7 @@ docker logs -f <conainer>   // show container output
 docker top <container>      // list the processes running inside container
 docker diff <container>     // show the diff between container and the image
 docker inspect <container>  // show lo-level infp
+docker image history <image> 
 ```
 
 Interact with a container
@@ -510,6 +511,7 @@ docker run -it --name B5 --network -p 9999:80 mynetwork ubuntu
 
 ### Dockerfile
 
+## Docker compose
 
 ## Kubernetes
 

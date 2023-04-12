@@ -520,6 +520,10 @@ docker run -it --name B5 --network -p 9999:80 mynetwork ubuntu
 kubectl version --short
 kubectl cluster-info
 kubectl api-resources --> list all k8s resources
+kubectl get endpoints
+kubectl get ns
+kubectl get services
+
 ```
 
 ### Configs

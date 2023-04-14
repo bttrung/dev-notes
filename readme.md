@@ -546,3 +546,14 @@ kubectl get node docker-desktop -o yaml -> get yaml config about node
 
 
 
+# Helm
+helm init --client-only
+helm init --upgrade
+helm repo list
+helm repo update
+helm search
+helm ls
+helm ls --deleted
+helm ls --all
+helm status <aaa>
+helm history <aaa>

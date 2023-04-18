@@ -329,6 +329,17 @@ export AWS_SECRET_ACCESS_KEY=<key>
 export AWS_DEFAULT_REGION=us-west-2
 ```
 # Redis
+## redis-cli
+``` 
+redis-cli INFO
+redis-cli INFO | grep connected
+
+```
+
+## Config
+``` 
+CONFIG GET *
+```
 
 # Docker
 ### Manage images
